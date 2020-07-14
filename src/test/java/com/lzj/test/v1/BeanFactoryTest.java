@@ -39,7 +39,7 @@ public class BeanFactoryTest {
     }*/
 
 
-    @Test
+   /* @Test
     public void test04(){
         DefaultBeanFactory factory=new DefaultBeanFactory();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
@@ -47,6 +47,6 @@ public class BeanFactoryTest {
         BeanDefinition beanDefinition=factory.getBeanDefinition("testService");
         assertEquals("com.lzj.service.TestService",beanDefinition.getBeanClassName());
         assertNotNull(factory.getBean("testService"));
-    }
+    }*/
 
 }
