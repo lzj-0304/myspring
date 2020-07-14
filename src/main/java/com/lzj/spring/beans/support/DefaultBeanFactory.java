@@ -2,17 +2,9 @@ package com.lzj.spring.beans.support;
 
 import com.lzj.spring.beans.BeanDefinition;
 import com.lzj.spring.beans.factory.BeanCreationException;
-import com.lzj.spring.beans.factory.BeanDefinitionStoreException;
 import com.lzj.spring.beans.factory.BeanFactory;
 import com.lzj.spring.util.ClassUtils;
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class DefaultBeanFactory implements BeanFactory,BeanDefinitionRegistry {
