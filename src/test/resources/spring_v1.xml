@@ -4,7 +4,5 @@
           class="com.lzj.service.TestService" >
     </bean>
 
-    <bean id="testService2"
-          class="com.lzj.service.TestService2" >
-    </bean>
+
 </beans>

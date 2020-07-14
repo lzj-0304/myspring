@@ -15,44 +15,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class DefaultBeanFactory implements BeanFactory {
+public class DefaultBeanFactory implements BeanFactory,BeanDefinitionRegistry {
 
     public Map<String, BeanDefinition> beanDefinitionMap=new HashMap<String,BeanDefinition>();
 
-    public static final String ID_ATTRIBUTE="id";
-    public static final String CLASS_ATTRIBUTE="class";
 
-    public DefaultBeanFactory(String configFile) {
-        loadBeanDefinition(configFile);
-    }
-
-    private void loadBeanDefinition(String configFile) {
-        InputStream is =null;
-        try {
-            is= ClassUtils.getDefaultClassLoader().getResourceAsStream(configFile);
-            SAXReader reader =new SAXReader();
-            Document document = reader.read(is);
-            Element element= document.getRootElement();
-            Iterator<Element> elements= element.elementIterator();
-            while (elements.hasNext()){
-                element = elements.next();
-                String beanID= element.attributeValue(ID_ATTRIBUTE);
-                String beanClassName=element.attributeValue(CLASS_ATTRIBUTE);
-                BeanDefinition beanDefinition = (BeanDefinition) new GenericBeanDefinition(beanID,beanClassName);
-                beanDefinitionMap.put(beanID,beanDefinition);
-            }
-        } catch (Exception e) {
-            throw  new BeanDefinitionStoreException(configFile+"文件解析异常",e);
-        }finally {
-            if(is != null){
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     @Override
     public Object getBean(String beanID) {
@@ -75,5 +42,11 @@ public class DefaultBeanFactory implements BeanFactory {
     @Override
     public BeanDefinition getBeanDefinition(String beanName) {
         return beanDefinitionMap.get(beanName);
+    }
+
+
+    @Override
+    public void registerBeanDefinition(String beanID, BeanDefinition beanDefinition) {
+        beanDefinitionMap.put(beanID,beanDefinition);
     }
 }

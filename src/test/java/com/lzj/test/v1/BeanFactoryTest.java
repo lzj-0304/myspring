@@ -4,13 +4,14 @@ import com.lzj.spring.beans.BeanDefinition;
 import com.lzj.spring.beans.factory.BeanCreationException;
 import com.lzj.spring.beans.factory.BeanDefinitionStoreException;
 import com.lzj.spring.beans.factory.BeanFactory;
+import com.lzj.spring.beans.factory.xml.XmlBeanDefinitionReader;
 import com.lzj.spring.beans.support.DefaultBeanFactory;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class BeanFactoryTest {
-    @Test
+   /* @Test
     public void test01(){
         BeanFactory factory=new DefaultBeanFactory("spring_v1.xml");
         BeanDefinition beanDefinition = factory.getBeanDefinition("testService");
@@ -35,7 +36,17 @@ public class BeanFactoryTest {
         } catch (BeanCreationException e) {
             e.printStackTrace();
         }
+    }*/
 
+
+    @Test
+    public void test04(){
+        DefaultBeanFactory factory=new DefaultBeanFactory();
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+        reader.loadBeanDefinitions("spring_v1.xml");
+        BeanDefinition beanDefinition=factory.getBeanDefinition("testService");
+        assertEquals("com.lzj.service.TestService",beanDefinition.getBeanClassName());
+        assertNotNull(factory.getBean("testService"));
     }
 
 }
