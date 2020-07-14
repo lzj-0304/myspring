@@ -4,6 +4,7 @@ import com.lzj.spring.beans.BeanDefinition;
 import com.lzj.spring.beans.factory.BeanDefinitionStoreException;
 import com.lzj.spring.beans.support.BeanDefinitionRegistry;
 import com.lzj.spring.beans.support.GenericBeanDefinition;
+import com.lzj.spring.core.io.Resource;
 import com.lzj.spring.util.ClassUtils;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -21,10 +22,10 @@ public class XmlBeanDefinitionReader {
         this.beanDefinitionRegistry = beanDefinitionRegistry;
     }
 
-    public void loadBeanDefinitions(String configFile) {
+    public void loadBeanDefinitions(Resource resource) {
         InputStream is =null;
         try {
-            is= ClassUtils.getDefaultClassLoader().getResourceAsStream(configFile);
+            is=  resource.getInputStream();
             SAXReader reader =new SAXReader();
             Document document = reader.read(is);
             Element element= document.getRootElement();
@@ -37,7 +38,7 @@ public class XmlBeanDefinitionReader {
                 beanDefinitionRegistry.registerBeanDefinition(beanID,beanDefinition);
             }
         } catch (Exception e) {
-            throw  new BeanDefinitionStoreException(configFile+"文件解析异常",e);
+            throw  new BeanDefinitionStoreException(resource.getDescription()+"文件解析异常",e);
         }finally {
             if(is != null){
                 try {
