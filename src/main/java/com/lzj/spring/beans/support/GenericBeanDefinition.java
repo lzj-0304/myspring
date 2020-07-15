@@ -1,6 +1,10 @@
 package com.lzj.spring.beans.support;
 
 import com.lzj.spring.beans.BeanDefinition;
+import com.lzj.spring.beans.PropertyValue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GenericBeanDefinition implements BeanDefinition {
     public  String  beanID;
@@ -12,6 +16,8 @@ public class GenericBeanDefinition implements BeanDefinition {
     private boolean singleton = true;
     // 默认singleton 为false
     private boolean prototype = false;
+
+    List<PropertyValue> propertyValues = new ArrayList<PropertyValue>();
 
     public GenericBeanDefinition(String beanID, String beanClassName) {
         this.beanID = beanID;
@@ -43,5 +49,10 @@ public class GenericBeanDefinition implements BeanDefinition {
     @Override
     public boolean isPrototype() {
         return this.prototype;
+    }
+
+    @Override
+    public List<PropertyValue> getPropertyValues() {
+        return this.propertyValues;
     }
 }

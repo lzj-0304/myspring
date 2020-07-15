@@ -1,7 +1,7 @@
 package com.lzj.spring.beans.factory;
 
 
-import com.lzj.spring.BeansException;
+import com.lzj.spring.beans.BeansException;
 
 public class BeanDefinitionStoreException extends BeansException {
 

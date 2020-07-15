@@ -1,4 +1,4 @@
-package com.lzj.spring;
+package com.lzj.spring.beans;
 
 public class BeansException extends RuntimeException {
 	public BeansException(String msg) {

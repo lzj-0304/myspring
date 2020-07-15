@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="testService" class="com.lzj.service.TestService" >
+        <property name="testDao" ref="testDao"></property>
+        <property name="uname" value="lzj"></property>
+        <property name="age" value="20"></property>
+        <property name="flag" value="on"></property>
+    </bean>
+
+    <bean id="testDao" class="com.lzj.dao.TestDao" >
+    </bean>
+
+
+</beans>

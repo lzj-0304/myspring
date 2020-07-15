@@ -1,5 +1,7 @@
 package com.lzj.spring.beans;
 
+import java.util.List;
+
 public interface BeanDefinition {
 
     String getBeanClassName();
@@ -17,4 +19,6 @@ public interface BeanDefinition {
     public boolean isSingleton();
     //快速定位bean scope类型 prototype
     public boolean isPrototype();
+
+    public List<PropertyValue> getPropertyValues();
 }
